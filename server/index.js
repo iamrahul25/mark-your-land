@@ -16,7 +16,12 @@ const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: '*' } });
 const rooms = new RoomManager(io);
 
+app.use('/api', (_req, res, next) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  next();
+});
 app.get('/api/rooms', (_req, res) => res.json({ rooms: rooms.list(), palette: PALETTE }));
+app.get('/healthz', (_req, res) => res.send('ok'));
 if (fs.existsSync(distDir)) app.use(express.static(distDir));
 
 const sanitizeName = (v) => (typeof v === 'string' ? v.replace(/[^\p{L}\p{N} _\-.]/gu, '').trim().slice(0, 16) : '') || 'Player';

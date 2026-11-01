@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { SERVER_URL } from './serverUrl.js';
 
 const FALLBACK_PALETTE = ['#ff5a5f', '#ffb400', '#00b3a4', '#7b61ff', '#2ba8ff', '#ff6fb1', '#4cc94c', '#ff8a3d', '#2f5fde', '#b45cff', '#00c2d8', '#e0c200'];
 
@@ -13,7 +14,7 @@ export default function Lobby({ onPlay }) {
   useEffect(() => {
     let alive = true;
     const load = () =>
-      fetch('/api/rooms')
+      fetch(`${SERVER_URL}/api/rooms`)
         .then((r) => r.json())
         .then((d) => {
           if (!alive) return;

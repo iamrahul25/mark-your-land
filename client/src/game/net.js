@@ -1,4 +1,5 @@
 import { io } from 'socket.io-client';
+import { SERVER_URL } from '../serverUrl.js';
 
 const INTERP_DELAY = 90;
 const MAX_EXTRAPOLATE = 80;
@@ -49,7 +50,7 @@ export class GameClient {
     this.lastSentAt = 0;
     this.connected = false;
 
-    this.socket = io({ transports: ['websocket'] });
+    this.socket = io(SERVER_URL || undefined, { transports: ['websocket'] });
     this.socket.on('connect', () => {
       this.connected = true;
       this.socket.emit('join', { name, color, room });
