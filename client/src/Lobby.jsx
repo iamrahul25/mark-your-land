@@ -4,8 +4,8 @@ const FALLBACK_PALETTE = ['#ff5a5f', '#ffb400', '#00b3a4', '#7b61ff', '#2ba8ff',
 
 export default function Lobby({ onPlay }) {
   const params = new URLSearchParams(window.location.search);
-  const [name, setName] = useState(() => localStorage.getItem('claimr.name') || '');
-  const [color, setColor] = useState(() => Number(localStorage.getItem('claimr.color') || 0));
+  const [name, setName] = useState(() => localStorage.getItem('myt.name') || '');
+  const [color, setColor] = useState(() => Number(localStorage.getItem('myt.color') || 0));
   const [room, setRoom] = useState(params.get('room') || '');
   const [palette, setPalette] = useState(FALLBACK_PALETTE);
   const [rooms, setRooms] = useState([]);
@@ -31,8 +31,8 @@ export default function Lobby({ onPlay }) {
 
   const play = (roomCode = room) => {
     const finalName = name.trim() || `Player${Math.floor(Math.random() * 900 + 100)}`;
-    localStorage.setItem('claimr.name', finalName);
-    localStorage.setItem('claimr.color', String(color));
+    localStorage.setItem('myt.name', finalName);
+    localStorage.setItem('myt.color', String(color));
     const code = roomCode.trim().toLowerCase();
     const url = new URL(window.location.href);
     if (code) url.searchParams.set('room', code);
@@ -45,7 +45,7 @@ export default function Lobby({ onPlay }) {
     <div className="lobby">
       <div className="lobby-card">
         <h1 className="logo">
-          Claimr<span>.io</span>
+          Mark Your <span>Territory</span>
         </h1>
         <p className="tagline">Leave your land, draw a loop, get back home to claim it.</p>
 

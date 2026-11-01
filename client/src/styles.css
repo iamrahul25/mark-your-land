@@ -48,14 +48,16 @@ button {
 
 .logo {
   margin: 0;
-  font-size: 56px;
+  font-size: 48px;
   font-weight: 700;
+  line-height: 1.05;
   letter-spacing: -1px;
   color: #ff5a5f;
   text-shadow: 0 5px 0 #c23c41;
 }
 
 .logo span {
+  display: block;
   color: #2ba8ff;
   text-shadow: 0 5px 0 #1a77b8;
 }
